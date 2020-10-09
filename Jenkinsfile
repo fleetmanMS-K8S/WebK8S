@@ -6,7 +6,7 @@ pipeline {
   environment {
     
     SERVICE_NAME = "WebK8S"
-    REPOSITORY_TAG="${YOUR_DOCKERHUB_USERNAME}/${ORGANIZATION_NAME}-${SERVICE_NAME}:${BUILD_ID}"
+    REPOSITORY_TAG="${YOUR_DOCKERHUB_USERNAME}/webk8s:${BUILD_ID}"
   
     
   
