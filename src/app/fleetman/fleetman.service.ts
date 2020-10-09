@@ -16,9 +16,12 @@ getmappoints(){
   let token = 'Bearer ' + this.userservice.getToken();
 const headers = new HttpHeaders().set('Authorization', token);
   //return  this.http.get<any>("http://localhost:8087/position/fetch/village_truck")
-  return  this.http.get<any>("http://34.195.41.137:8011/fleetman-tracker/position/fetch/village_truck", {headers})
+ // return  this.http.get<any>("http://miniposra:8888/position/fetch/village_truck", {headers})
+ //return  this.http.get<any>("http://localhost:8012/vehicle/fetch/position", {headers})
+ return  this.http.get<any>("http://" + window.location.hostname + ":" + window.location.port + "/position", {headers})
 
 }
+
 
 
 getFleetmanUpdateListener(){
@@ -35,7 +38,9 @@ getVehicleUpdateListener(){
 getvehicletracked(){
   let token1 = 'Bearer ' + this.userservice.getToken();
   const headers = new HttpHeaders().set('Authorization', token1);
-  this.http.get<any>("http://34.195.41.137:8011/vehicledetails/vehicle/fetch", {headers,responseType: 'text' as 'json'}).subscribe(res=>{
+ // this.http.get<any>("http://minivehicle:8080/vehicle/fetch", {headers,responseType: 'text' as 'json'}).subscribe(res=>{
+  //this.http.get<any>("http://localhost:8012/vehicle/fetch", {headers,responseType: 'text' as 'json'}).subscribe(res=>{
+    this.http.get<any>("http://" + window.location.hostname + ":" + window.location.port + "/vehicle", {headers,responseType: 'text' as 'json'}).subscribe(res=>{
     this.subject2.next(res);
   })
 

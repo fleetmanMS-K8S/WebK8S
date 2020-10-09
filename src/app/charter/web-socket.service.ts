@@ -8,7 +8,11 @@ export class WebSocketService{
   socket:any;
 
   constructor(){
-    this.socket = io.connect('http://3.233.132.93:3002');
+   // this.socket = io.connect('http://3.233.132.93:3002');
+   this.socket = io.connect('http://localhost:3002');
+ // this.socket = io.connect('http://localhost:4202/coap');
+
+
 
 }
 

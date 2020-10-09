@@ -46,7 +46,8 @@ export class UserService{
 
      // this.http.post<UserResponse>("http://localhost:8011/user-microservice/user",postData,httpOptions).subscribe((res)=>{
 
-      this.http.post<UserResponse>("http://34.195.41.137:8011/user-microservice/",postData,httpOptions).subscribe((res)=>{
+     // this.http.post<UserResponse>("http://34.195.41.137:8011/user-microservice/",postData,httpOptions).subscribe((res)=>{
+      this.http.post<UserResponse>("http://" + window.location.hostname + ":" + window.location.port + "/adduser",postData,httpOptions).subscribe((res)=>{
            console.log(res);
            this.router.navigate(["/login"]);
 
@@ -54,6 +55,8 @@ export class UserService{
 
 
   }
+
+
 
   loginuser(email:string,password:string){
 
@@ -69,8 +72,10 @@ export class UserService{
 
      // this.http.post<UserResponse>("http://localhost:8011/user-microservice/user",postData,httpOptions).subscribe((res)=>{
 
-      this.http.post<any>("http://34.195.41.137:8011/user-microservice/authenticate",loginData,{ responseType: 'text' as 'json' }).subscribe((res)=>{
-      const arr = res.split(" ");
+    //  this.http.post<any>("http://34.195.41.137:8011/user-microservice/authenticate",loginData,{ responseType: 'text' as 'json' }).subscribe((res)=>{
+
+      this.http.post<any>("http://" + window.location.hostname + ":" + window.location.port + "/authenticate",loginData,{ responseType: 'text' as 'json' }).subscribe((res)=>{
+    const arr = res.split(" ");
       this.token = arr[0];
       if(this.token){
         const time = Number(arr[1]);
@@ -103,7 +108,9 @@ export class UserService{
 
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
 
-    this.http.get<any>("http://34.195.41.137:8011/user-microservice/authenticate",{headers})
+  //  this.http.get<any>("http://34.195.41.137:8011/user-microservice/authenticate",{headers})
+
+  this.http.get<any>("http://" + window.location.hostname + ":" + window.location.port + "/authenticate",{headers})
     .pipe(map((fetchData)=>{
       return {
         users: fetchData.map((each)=>{
