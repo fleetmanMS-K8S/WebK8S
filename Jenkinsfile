@@ -40,11 +40,7 @@ pipeline {
           }
       }
     
-      stage('Deploy Ingress') {
-          steps {
-            sh 'envsubst < ${WORKSPACE}/asg.yaml | kubectl apply -f -'
-          }
-      }
+   
   
   
   
